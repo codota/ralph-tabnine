@@ -2,7 +2,7 @@
 
 ## Overview
 
-Ralph is an autonomous AI agent loop that runs Tabnine CLI repeatedly until all PRD items are complete. Each iteration is a fresh Tabnine CLI instance with clean context.
+Ralph-tabnine is an autonomous AI agent loop that runs Tabnine CLI repeatedly until all PRD items are complete. Each iteration is a fresh Tabnine CLI instance with clean context.
 
 ## Commands
 
