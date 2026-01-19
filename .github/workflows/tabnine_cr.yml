@@ -25,12 +25,28 @@ jobs:
           git config user.name "Tabnine CLI Agent"
           git config user.email "TabnineCLI@tabnine.com"
 
-      - name: Configure tabnine auth
+      - name: Configure Tabnine Auth & Settings
+        env:
+          TABNINE_KEY: ${{ secrets.TABNINE_KEY }}
         run: |
           mkdir -p ~/.tabnine/agent
-          cat << 'EOF' > ~/.tabnine/agent/tabnine_creds.json
-          ${{ secrets.TABNINE_KEY }}
+          
+          # Write Settings
+          cat << 'EOF' > ~/.tabnine/agent/settings.json
+          {
+            "general": {
+              "tabnineHost": "https://console.tabnine.com"
+            },
+            "security": {
+              "auth": {
+                "selectedType": "tabnine-personal"
+              }
+            }
+          }
           EOF
+          
+          # Write Credentials using env var (safer)
+          echo "$TABNINE_KEY" > ~/.tabnine/agent/tabnine_creds.json
           
       - name: Code Review
         env:
