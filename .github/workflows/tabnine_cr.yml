@@ -33,5 +33,4 @@ jobs:
       - name: Code Review
         env:
           GH_TOKEN: ${{ github.token }}
-          BRANCH_PREFIX: docs
         run: ~/.local/bin/tabnine -y --output-format json -p "You are operating in a GitHub Actions runner performing automated code review. The gh CLI is available and authenticated via GH_TOKEN. You may comment on pull requests."
