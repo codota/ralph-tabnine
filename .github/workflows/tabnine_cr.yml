@@ -28,7 +28,9 @@ jobs:
       - name: Configure tabnine auth
         run: |
           mkdir -p ~/.tabnine/agent
-          echo ${{ secrets.TABNINE_KEY }} > ~/.tabnine/agent/tabnine_creds.json
+          cat << 'EOF' > ~/.tabnine/agent/tabnine_creds.json
+          ${{ secrets.TABNINE_KEY }}
+          EOF
           
       - name: Code Review
         env:
