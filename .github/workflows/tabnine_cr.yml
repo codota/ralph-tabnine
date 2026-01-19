@@ -35,7 +35,7 @@ jobs:
           GH_TOKEN: ${{ github.token }}
           BRANCH_PREFIX: docs
         run: |
-          tabnine -y -p "You are operating in a GitHub Actions runner performing automated code review. The gh CLI is available and authenticated via GH_TOKEN. You may comment on pull requests.
+          ~/.local/bin/tabnine -y -p "You are operating in a GitHub Actions runner performing automated code review. The gh CLI is available and authenticated via GH_TOKEN. You may comment on pull requests.
           Context:
           - Repo: ${{ github.repository }}
           - PR Number: ${{ github.event.pull_request.number }}
