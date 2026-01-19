@@ -48,11 +48,20 @@ jobs:
           # Write Credentials using env var (safer)
           echo "$TABNINE_KEY" > ~/.tabnine/agent/tabnine_creds.json
           
+
+      - name: Authenticate GitHub CLI
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          # Explicitly login to generate ~/.config/gh/hosts.yml
+          # This ensures the agent finds the auth config even if it clears env vars
+          echo "$GH_TOKEN" | gh auth login --with-token
+
       - name: Code Review
         env:
           GH_TOKEN: ${{ github.token }}
         run: |
-          ~/.local/bin/tabnine -y -p "You are operating in a GitHub Actions runner performing automated code review. The gh CLI is available and authenticated via GH_TOKEN env variable. You may comment on pull requests.
+          ~/.local/bin/tabnine -y -p "You are operating in a GitHub Actions runner performing automated code review. The gh CLI is available and authenticated.
           Context:
           - Repo: ${{ github.repository }}
           - PR Number: ${{ github.event.pull_request.number }}
