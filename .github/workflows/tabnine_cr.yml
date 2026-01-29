@@ -46,7 +46,7 @@ jobs:
           EOF
           
           # Write Credentials using env var (safer)
-          echo "$TABNINE_KEY" > ~/.tabnine/agent/tabnine_creds.json
+          # echo "$TABNINE_KEY" > ~/.tabnine/agent/tabnine_creds.json
           
 
       - name: Authenticate GitHub CLI
